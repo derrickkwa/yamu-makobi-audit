@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Makobi USA — Growth Audit · April 2026</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #ffffff;
+    --bg-alt: #f9fafb;
+    --red: #dc2626;
+    --red-bg: #fef2f2;
+    --red-border: #fecaca;
+    --green: #16a34a;
+    --green-bg: #f0fdf4;
+    --green-border: #bbf7d0;
+    --amber: #d97706;
+    --amber-bg: #fffbeb;
+    --amber-border: #fde68a;
+    --accent: #6366f1;
+    --accent-bg: #eef2ff;
+    --accent-border: #c7d2fe;
+    --text: #111827;
+    --text-2: #374151;
+    --text-3: #6b7280;
+    --text-4: #9ca3af;
+    --border: #e5e7eb;
+    --border-2: #f3f4f6;
+    --nav-h: 60px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    height: var(--nav-h);
+    display: flex;
+    align-items: center;
+  }
+  .nav-inner {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 24px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+    scrollbar-width: none;
+    gap: 2px;
+  }
+  .nav-inner::-webkit-scrollbar { display: none; }
+  .nav-brand {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+    white-space: nowrap;
+    margin-right: 20px;
+    flex-shrink: 0;
+  }
+  .nav-brand span { color: var(--text-3); font-weight: 400; }
+  nav a {
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-3);
+    padding: 6px 11px;
+    border-radius: 6px;
+    white-space: nowrap;
+    transition: color 0.15s, background 0.15s;
+    flex-shrink: 0;
+  }
+  nav a:hover { color: var(--text); background: var(--bg-alt); }
+  nav a.active { color: var(--accent); background: var(--accent-bg); }
+
+  /* HERO */
+  .hero {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 64px 24px 52px;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--text-4);
+    margin-bottom: 18px;
+  }
+  .hero h1 {
+    font-size: clamp(26px, 3.8vw, 42px);
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--text);
+    margin-bottom: 18px;
+    max-width: 680px;
+  }
+  .hero p {
+    font-size: 16px;
+    color: var(--text-2);
+    max-width: 580px;
+    line-height: 1.75;
+    margin-bottom: 32px;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 36px;
+    flex-wrap: wrap;
+  }
+  .hero-stat-num {
+    font-size: 30px;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 5px;
+  }
+  .hero-stat-num.red { color: var(--red); }
+  .hero-stat-num.accent { color: var(--accent); }
+  .hero-stat-label { font-size: 12px; color: var(--text-4); }
+
+  /* SECTIONS */
+  section {
+    border-bottom: 1px solid var(--border);
+    scroll-margin-top: var(--nav-h);
+  }
+  section:nth-child(even) { background: var(--bg-alt); }
+  .section-inner {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 56px 24px;
+  }
+  .ch-num {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--text-4);
+    margin-bottom: 10px;
+  }
+  .ch-num span { color: var(--accent); }
+  .section-inner h2 {
+    font-size: clamp(21px, 2.8vw, 30px);
+    font-weight: 800;
+    line-height: 1.25;
+    color: var(--text);
+    margin-bottom: 10px;
+    max-width: 700px;
+  }
+  .implication {
+    font-size: 15px;
+    color: var(--text-2);
+    max-width: 640px;
+    line-height: 1.7;
+    margin-bottom: 32px;
+  }
+
+  /* STAT CARDS */
+  .stats-row {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+    align-items: flex-start;
+  }
+  .stat-card {
+    flex: 1;
+    min-width: 128px;
+    max-width: 190px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 17px;
+  }
+  .stat-card.red { background: var(--red-bg); border-color: var(--red-border); }
+  .stat-card.green { background: var(--green-bg); border-color: var(--green-border); }
+  .stat-card.amber { background: var(--amber-bg); border-color: var(--amber-border); }
+  .stat-card.accent { background: var(--accent-bg); border-color: var(--accent-border); }
+  .stat-num {
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 5px;
+    color: var(--text);
+  }
+  .stat-card.red .stat-num { color: var(--red); }
+  .stat-card.green .stat-num { color: var(--green); }
+  .stat-card.amber .stat-num { color: var(--amber); }
+  .stat-card.accent .stat-num { color: var(--accent); }
+  .stat-label { font-size: 12px; color: var(--text-3); margin-bottom: 3px; }
+  .stat-bench { font-size: 11px; color: var(--text-4); }
+
+  /* CHART */
+  .chart-area {
+    flex: 2;
+    min-width: 260px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 22px;
+  }
+  .chart-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-4);
+    margin-bottom: 14px;
+  }
+  .bar-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 9px;
+  }
+  .bar-name { font-size: 12px; color: var(--text-2); min-width: 130px; flex-shrink: 0; }
+  .bar-track {
+    flex: 1;
+    background: var(--border-2);
+    border-radius: 4px;
+    height: 9px;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 9px;
+    border-radius: 4px;
+    background: var(--accent);
+  }
+  .bar-fill.red { background: var(--red); }
+  .bar-fill.green { background: var(--green); }
+  .bar-fill.amber { background: var(--amber); }
+  .bar-fill.gray { background: var(--border); }
+  .bar-val { font-size: 12px; font-weight: 700; color: var(--text-2); min-width: 50px; text-align: right; flex-shrink: 0; }
+  .bar-val.red { color: var(--red); }
+  .bar-val.green { color: var(--green); }
+  .bar-val.amber { color: var(--amber); }
+  .chart-note {
+    margin-top: 14px;
+    background: var(--amber-bg);
+    border: 1px solid var(--amber-border);
+    border-radius: 6px;
+    padding: 9px 12px;
+    font-size: 12px;
+    color: #92400e;
+    line-height: 1.55;
+  }
+
+  /* EXPAND */
+  details.expand {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 12px;
+    background: var(--bg);
+  }
+  details.expand summary {
+    padding: 13px 18px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    user-select: none;
+  }
+  details.expand summary::-webkit-details-marker { display: none; }
+  details.expand summary::before { content: '▸'; font-size: 11px; transition: transform 0.2s; display: inline-block; }
+  details.expand[open] summary::before { transform: rotate(90deg); }
+  details.expand summary:hover { background: var(--accent-bg); }
+  .expand-body { padding: 4px 18px 20px; border-top: 1px solid var(--border-2); }
+
+  /* WHAT WED DO */
+  .what-wed-do {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin-top: 12px;
+  }
+  .wwd-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent);
+    margin-bottom: 5px;
+  }
+  .what-wed-do p { font-size: 13px; color: var(--text-2); line-height: 1.65; }
+  .what-wed-do strong { color: var(--text); }
+
+  /* TABLES */
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
+  th {
+    text-align: left;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-4);
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-alt);
+  }
+  td { padding: 10px 12px; border-bottom: 1px solid var(--border-2); color: var(--text-2); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  .tag { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: 11px; font-weight: 700; }
+  .tag.red { background: var(--red-bg); color: var(--red); }
+  .tag.green { background: var(--green-bg); color: var(--green); }
+  .tag.amber { background: var(--amber-bg); color: var(--amber); }
+  .tag.gray { background: var(--bg-alt); color: var(--text-3); }
+
+  /* FRICTION */
+  .friction-list { display: flex; flex-direction: column; gap: 12px; margin-top: 6px; }
+  .friction-item { display: flex; gap: 12px; align-items: flex-start; }
+  .friction-badge {
+    background: var(--red-bg);
+    color: var(--red);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+  .friction-item p { font-size: 13px; color: var(--text-2); line-height: 1.65; margin: 0; }
+
+  /* CAMPAIGN CARDS */
+  .campaign-list { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
+  .campaign-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 13px 16px;
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+  .campaign-card.highlight { background: var(--red-bg); border-color: var(--red-border); }
+  .campaign-name { font-size: 12px; font-weight: 600; color: var(--text); flex: 2; font-family: "SF Mono", "Fira Code", monospace; word-break: break-word; }
+  .campaign-card.highlight .campaign-name { color: var(--red); }
+  .campaign-meta { display: flex; gap: 16px; flex-shrink: 0; }
+  .campaign-stat { text-align: right; }
+  .campaign-stat-val { font-size: 13px; font-weight: 700; color: var(--text); }
+  .campaign-stat-val.red { color: var(--red); }
+  .campaign-stat-label { font-size: 10px; color: var(--text-4); }
+
+  /* ROADMAP */
+  .roadmap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 20px; }
+  .roadmap-col { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+  .roadmap-header { padding: 14px 16px; border-bottom: 1px solid var(--border-2); }
+  .roadmap-month { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-4); margin-bottom: 3px; }
+  .roadmap-theme { font-size: 15px; font-weight: 700; color: var(--text); }
+  .roadmap-items { padding: 12px 16px; display: flex; flex-direction: column; gap: 9px; }
+  .roadmap-item { display: flex; gap: 10px; align-items: flex-start; }
+  .roadmap-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); margin-top: 7px; flex-shrink: 0; }
+  .roadmap-dot.red { background: var(--red); }
+  .roadmap-dot.green { background: var(--green); }
+  .roadmap-dot.amber { background: var(--amber); }
+  .roadmap-item-text { font-size: 13px; color: var(--text-2); line-height: 1.5; }
+  .roadmap-item-val { font-size: 11px; font-weight: 700; color: var(--accent); margin-top: 2px; }
+  .roadmap-item-val.red { color: var(--red); }
+  .roadmap-item-val.green { color: var(--green); }
+  .roadmap-target {
+    background: var(--text);
+    color: white;
+    border-radius: 10px;
+    padding: 18px 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 6px;
+  }
+  .roadmap-target-label { font-size: 11px; color: #9ca3af; margin-bottom: 3px; }
+  .roadmap-target-val { font-size: 22px; font-weight: 800; color: white; }
+  .roadmap-target-val.accent { color: #a5b4fc; }
+
+  /* UTILS */
+  .callout {
+    background: var(--amber-bg);
+    border: 1px solid var(--amber-border);
+    border-radius: 8px;
+    padding: 12px 15px;
+    font-size: 13px;
+    color: #92400e;
+    line-height: 1.6;
+    margin-top: 14px;
+  }
+  .callout strong { color: #78350f; }
+  .callout.blue { background: var(--accent-bg); border-color: var(--accent-border); color: #3730a3; }
+  .callout.blue strong { color: #312e81; }
+  .divider { height: 1px; background: var(--border-2); margin: 16px 0; }
+  p.body { font-size: 13px; color: var(--text-2); line-height: 1.75; margin-top: 8px; }
+  .trend-up { color: var(--green); font-weight: 700; }
+  .trend-dn { color: var(--red); font-weight: 700; }
+  .trend-fl { color: var(--text-3); }
+
+  /* ATTR STACK */
+  .attr-stack { display: flex; flex-direction: column; gap: 9px; margin-top: 12px; }
+  .attr-row { display: flex; align-items: center; gap: 12px; padding: 11px 14px; background: var(--bg-alt); border: 1px solid var(--border); border-radius: 8px; }
+  .attr-platform { font-size: 13px; font-weight: 700; color: var(--text); min-width: 120px; flex-shrink: 0; }
+  .attr-claim { font-size: 13px; color: var(--text-2); flex: 1; }
+  .attr-verdict { font-size: 12px; font-weight: 700; flex-shrink: 0; }
+  .attr-verdict.red { color: var(--red); }
+  .attr-verdict.amber { color: var(--amber); }
+  .attr-verdict.green { color: var(--green); }
+
+  /* FOOTER */
+  footer {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 36px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  footer p { font-size: 12px; color: var(--text-4); }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    .stats-row { flex-direction: column; }
+    .stat-card { max-width: 100%; }
+    .chart-area { min-width: 100%; }
+    .bar-name { min-width: 90px; font-size: 11px; }
+    .roadmap { grid-template-columns: 1fr; }
+    .hero-stats { gap: 20px; }
+    .nav-brand { display: none; }
+    .campaign-meta { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-brand">Makobi USA <span>· April 2026</span></div>
+    <a href="#ch01" class="active">01 Situation</a>
+    <a href="#ch02">02 Paid Media</a>
+    <a href="#ch03">03 Growth Gap</a>
+    <a href="#ch04">04 Quick Wins</a>
+    <a href="#ch05">05 Opportunity</a>
+    <a href="#ch06">06 The Plan</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">Growth Audit · April 2026</div>
+  <h1>Your ads are converting your existing audience — not growing it.</h1>
+  <p>The ROAS looks healthy. But a close read of 13 months of data shows that paid media is largely recapturing organic demand that already existed — not creating new customers. That's why revenue has plateaued despite consistent spend.</p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num">$244K</div>
+      <div class="hero-stat-label">avg monthly revenue (Shopify)</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num red">12 mo</div>
+      <div class="hero-stat-label">revenue plateau</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num accent">$500K+</div>
+      <div class="hero-stat-label">target monthly revenue</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ -->
+<!-- CH01 — THE SITUATION       -->
+<!-- ═══════════════════════════ -->
+<section id="ch01">
+  <div class="section-inner">
+    <div class="ch-num"><span>01</span> — The Situation</div>
+    <h2>Revenue has been flat for 12 months. The instinct is to spend more. The data points elsewhere.</h2>
+    <p class="implication">The business is generating consistent organic demand — proven by a 7-month window in 2024 where near-zero paid spend still produced ~$200K/month in revenue. Paid media is running on top of that baseline. The constraint isn't the volume of spend — it's what the spend is actually doing.</p>
+
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-num">$244K</div>
+        <div class="stat-label">confirmed monthly revenue</div>
+        <div class="stat-bench">1,255 orders × $195 AOV</div>
+      </div>
+      <div class="stat-card red">
+        <div class="stat-num">12 mo</div>
+        <div class="stat-label">plateau duration</div>
+        <div class="stat-bench">$200–300K range, consistent</div>
+      </div>
+      <div class="stat-card amber">
+        <div class="stat-num">26×</div>
+        <div class="stat-label">blended Meta ROAS</div>
+        <div class="stat-bench">Looks healthy. Read on.</div>
+      </div>
+      <div class="chart-area" style="flex:2; min-width:260px;">
+        <div class="chart-label">The organic demand proof</div>
+        <div class="bar-row">
+          <div class="bar-name">Current avg monthly rev</div>
+          <div class="bar-track"><div class="bar-fill" style="width:49%;"></div></div>
+          <div class="bar-val">~$244K</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-name">Apr–Oct 2024 (near-zero spend)</div>
+          <div class="bar-track"><div class="bar-fill green" style="width:40%;"></div></div>
+          <div class="bar-val green">~$200K</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-name">Monthly Meta spend</div>
+          <div class="bar-track"><div class="bar-fill red" style="width:6%;"></div></div>
+          <div class="bar-val red">$15.3K</div>
+        </div>
+        <div class="chart-note">During a 7-month period in 2024 with near-zero paid spend, the business still produced ~$200K/month. Organic demand is substantial and proven. Paid media is amplifying a baseline — not creating it.</div>
+      </div>
+    </div>
+
+    <details class="expand">
+      <summary>Why the 26× ROAS is misleading</summary>
+      <div class="expand-body">
+        <p class="body">A 26× blended ROAS is a strong number. But it's a blended number — it averages together campaigns that are genuinely acquiring new customers and campaigns that are retargeting people who were already going to buy. When most spend is in retargeting, a high blended ROAS is expected regardless of whether the ads are growing the business.</p>
+        <div class="divider"></div>
+        <table>
+          <thead><tr><th>What blended ROAS shows</th><th>What it hides</th></tr></thead>
+          <tbody>
+            <tr><td>Average return across all campaigns</td><td>New-customer ROAS (6–12×) vs. retargeting ROAS (30–51×) as separate figures</td></tr>
+            <tr><td>Revenue attributed to Meta</td><td>How much of that revenue would have happened anyway via organic/direct</td></tr>
+            <tr><td>Stable-looking 26× average</td><td>ROAS dropped -30% QoQ (30.58× → 21.33×) as the retargeting pool fatigues</td></tr>
+          </tbody>
+        </table>
+        <div class="divider"></div>
+        <p class="body" style="font-weight:600; color:var(--text);">Meta's own attribution comparison confirms the overclaiming.</p>
+        <p class="body">When you look at the same account through different attribution windows, the purchase counts change dramatically — which tells you how many of the reported conversions are real acquisition vs. retargeting credit-claiming on organic intent.</p>
+        <table style="margin-top:10px;">
+          <thead><tr><th>Attribution window</th><th>Purchases reported</th><th>ROAS</th><th>What this means</th></tr></thead>
+          <tbody>
+            <tr><td>Default (70-click / 10-view)</td><td style="font-weight:700;">5,357</td><td>21.23×</td><td style="color:var(--text-3);">What Meta reports as standard</td></tr>
+            <tr><td>1-Day Click only</td><td style="font-weight:700; color:var(--red);">2,545</td><td style="color:var(--red);">16.67×</td><td style="color:var(--text-3);">Purchases where intent and click happen same day</td></tr>
+            <tr><td>28-Day Click + 1-Day View</td><td style="font-weight:700;">2,820</td><td>10.59×</td><td style="color:var(--text-3);">Includes view-through — lower-confidence attribution</td></tr>
+            <tr><td>1-Day Engagement only</td><td style="font-weight:700; color:var(--amber);">489</td><td>—</td><td style="color:var(--amber);">Existing customers who engaged with an ad after already buying</td></tr>
+          </tbody>
+        </table>
+        <div class="callout" style="margin-top:12px;">The 489 engagement-only purchases are not new conversions — they are existing customers who interacted with an ad after already completing a purchase. They count toward the default ROAS number. Only ~47% of reported purchases appear in the tighter 1-day click window. <strong>This is Meta's own data confirming that a significant portion of what's being claimed as paid conversions is organic demand being credited retroactively.</strong></div>
+        <div class="callout blue" style="margin-top:8px;">The correct question isn't "what is our ROAS?" — it's "how many net-new customers did we acquire this month, and at what cost?" That number is not currently tracked or reported.</div>
+      </div>
+    </details>
+
+    <div class="what-wed-do">
+      <div class="wwd-label">The lens that changes everything</div>
+      <p>Split every performance conversation into two numbers: <strong>blended ROAS</strong> (what exists today) and <strong>new-customer ROAS</strong> (what drives growth). The first tells you if the account is efficient. The second tells you if the business is growing. Right now only the first is visible.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ -->
+<!-- CH02 — PAID MEDIA          -->
+<!-- ═══════════════════════════ -->
+<section id="ch02">
+  <div class="section-inner">
+    <div class="ch-num"><span>02</span> — What Paid Media Is Actually Doing</div>
+    <h2>The two highest-spending campaigns are retargeting the same audience at 27× frequency.</h2>
+    <p class="implication">When you look at the actual campaign names and their reach/frequency data, the picture is clear: the majority of active spend is circulating within an existing audience — not reaching new people. The account is well-optimised for converting intent that already exists. It is not built to create new intent.</p>
+
+    <div class="stats-row">
+      <div class="stat-card red">
+        <div class="stat-num">47.5%</div>
+        <div class="stat-label">recycled reach (90 days)</div>
+        <div class="stat-bench">Nearly half the audience is repeat</div>
+      </div>
+      <div class="stat-card red">
+        <div class="stat-num">14.55×</div>
+        <div class="stat-label">annual ad frequency</div>
+        <div class="stat-bench">Same person, 14× per year</div>
+      </div>
+      <div class="stat-card amber">
+        <div class="stat-num">27–28×</div>
+        <div class="stat-label">frequency on top campaigns</div>
+        <div class="stat-bench">Retargeting & Retention pools</div>
+      </div>
+      <div class="chart-area" style="flex:2; min-width:280px;">
+        <div class="chart-label">Active campaigns by spend — what they're actually doing</div>
+        <div class="bar-row">
+          <div class="bar-name" style="min-width:150px; color: var(--red);">DynamicRemarketing</div>
+          <div class="bar-track"><div class="bar-fill red" style="width:100%;"></div></div>
+          <div class="bar-val red">$15,210</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-name" style="min-width:150px;">Advantage+ Shopping</div>
+          <div class="bar-track"><div class="bar-fill" style="width:99%;"></div></div>
+          <div class="bar-val">$15,076</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-name" style="min-width:150px;">Videos Advantage+</div>
+          <div class="bar-track"><div class="bar-fill" style="width:97%;"></div></div>
+          <div class="bar-val">$14,754</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-name" style="min-width:150px;">NewCustomers DCA</div>
+          <div class="bar-track"><div class="bar-fill amber" style="width:66%;"></div></div>
+          <div class="bar-val">$10,016</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-name" style="min-width:150px; color: var(--red);">Retention RE_MARKETING</div>
+          <div class="bar-track"><div class="bar-fill red" style="width:47%;"></div></div>
+          <div class="bar-val red">$7,116</div>
+        </div>
+        <div class="chart-note">Red bars = explicitly named retargeting or retention campaigns. The top campaign by spend and the 5th-highest campaign are both direct retargeting. The Advantage+ campaigns can serve both new and existing audiences — Meta doesn't report the split.</div>
+      </div>
+    </div>
+
+    <details class="expand">
+      <summary>Campaign-level detail: frequency and reach</summary>
+      <div class="expand-body">
+        <p class="body">Frequency tells you how many times the same person sees your ads. A high-frequency retargeting campaign converting at high ROAS is not growing the customer base — it's converting the same pool repeatedly until it exhausts.</p>
+        <div class="divider"></div>
+        <div class="campaign-list">
+          <div class="campaign-card highlight">
+            <div class="campaign-name">AS_Meta_DynamicRemarketing DYNAMIC CATALOG_SALES</div>
+            <div class="campaign-meta">
+              <div class="campaign-stat"><div class="campaign-stat-val red">27.87×</div><div class="campaign-stat-label">frequency</div></div>
+              <div class="campaign-stat"><div class="campaign-stat-val">33,620</div><div class="campaign-stat-label">reach</div></div>
+              <div class="campaign-stat"><div class="campaign-stat-val">50.94×</div><div class="campaign-stat-label">ROAS</div></div>
+            </div>
+          </div>
+          <div class="campaign-card">
+            <div class="campaign-name">As_MakobiUSA_Meta_Videos Advantage+ shopping campaign</div>
+            <div class="campaign-meta">
+              <div class="campaign-stat"><div class="campaign-stat-val">3.12×</div><div class="campaign-stat-label">frequency</div></div>
+              <div class="campaign-stat"><div class="campaign-stat-val">306,738</div><div class="campaign-stat-label">reach</div></div>
+              <div class="campaign-stat"><div class="campaign-stat-val">17.65×</div><div class="campaign-stat-label">ROAS</div></div>
+            </div>
+          </div>
+          <div class="campaign-card">
+            <div class="campaign-name">AS_MakobiUSA_Meta Advantage+ shopping campaign</div>
+            <div class="campaign-meta">
+              <div class="campaign-stat"><div class="campaign-stat-val">5.06×</div><div class="campaign-stat-label">frequency</div></div>
+              <div class="campaign-stat"><div class="campaign-stat-val">263,961</div><div class="campaign-stat-label">reach</div></div>
+              <div class="campaign-stat"><div class="campaign-stat-val">22.81×</div><div class="campaign-stat-label">ROAS</div></div>
+            </div>
+          </div>
+          <div class="campaign-card highlight">
+            <div class="campaign-name">AS_MakobiUSA_Meta_Retention RE_MARKETING CONVERSIONS</div>
+            <div class="campaign-meta">
+              <div class="campaign-stat"><div class="campaign-stat-val red">27.44×</div><div class="campaign-stat-label">frequency</div></div>
+              <div class="campaign-stat"><div class="campaign-stat-val">21,421</div><div class="campaign-stat-label">reach</div></div>
+              <div class="campaign-stat"><div class="campaign-stat-val">32.21×</div><div class="campaign-stat-label">ROAS</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="callout">The two retargeting campaigns (DynamicRemarketing + Retention) are showing ads to a combined pool of ~55,000 people at 27–28× frequency. That pool is not growing. Every week, those same people see another Makobi ad.</div>
+      </div>
+    </details>
+
+    <details class="expand">
+      <summary>Why the ROAS on retargeting looks so strong</summary>
+      <div class="expand-body">
+        <p class="body">The DynamicRemarketing campaign reports 50.94× ROAS. The Retention campaign reports 32.21×. These numbers are real — those campaigns are genuinely converting at high rates. But the reason is attribution, not acquisition.</p>
+        <div class="divider"></div>
+        <p class="body">When someone visits the site organically, adds to cart, leaves, and then clicks a retargeting ad two days later — that purchase is attributed 100% to the ad. But that person was likely going to buy. The ad may have accelerated the purchase by a day or two, but the demand existed before the ad was served.</p>
+        <p class="body" style="margin-top:8px;">This is the structural reason blended ROAS can look strong while the business doesn't grow: you can run a profitable retargeting programme forever without acquiring a single net-new customer.</p>
+      </div>
+    </details>
+
+    <div class="what-wed-do">
+      <div class="wwd-label">What we'd do</div>
+      <p>Keep retargeting — it converts well and the unit economics are sound. But <strong>cap its frequency and budget allocation</strong> to prevent further pool exhaustion. The growth question is what happens alongside it: a dedicated prospecting campaign, with cold-audience creative, tracked on new-customer ROAS separately. That's the part that doesn't exist yet.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ -->
+<!-- CH03 — THE GROWTH GAP      -->
+<!-- ═══════════════════════════ -->
+<section id="ch03">
+  <div class="section-inner">
+    <div class="ch-num"><span>03</span> — The Growth Gap</div>
+    <h2>The retargeting pool doesn't refill itself. Without prospecting, there are no new customers.</h2>
+    <p class="implication">The retargeting audience is drawn from people who have already visited the site or engaged with the brand. That pool comes from organic search, word of mouth, and whatever new traffic prospecting generates. Right now, very little budget is dedicated to reaching cold audiences — which means the retargeting pool is gradually shrinking, not growing.</p>
+
+    <div class="stats-row">
+      <div class="stat-card red">
+        <div class="stat-num">−12%</div>
+        <div class="stat-label">revenue QoQ</div>
+        <div class="stat-bench">Oct–Dec 2025 → Jan–Mar 2026</div>
+      </div>
+      <div class="stat-card red">
+        <div class="stat-num">+26%</div>
+        <div class="stat-label">spend increase same period</div>
+        <div class="stat-bench">More spend, less revenue</div>
+      </div>
+      <div class="stat-card red">
+        <div class="stat-num">−30%</div>
+        <div class="stat-label">ROAS QoQ decline</div>
+        <div class="stat-bench">30.58× → 21.33×</div>
+      </div>
+      <div class="chart-area" style="flex:2; min-width:260px;">
+        <div class="chart-label">QoQ performance — the exhaustion signal</div>
+        <div class="bar-row">
+          <div class="bar-name">Oct–Dec revenue</div>
+          <div class="bar-track"><div class="bar-fill green" style="width:100%;"></div></div>
+          <div class="bar-val green">$878K</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-name">Jan–Mar revenue</div>
+          <div class="bar-track"><div class="bar-fill red" style="width:88%;"></div></div>
+          <div class="bar-val red">$773K</div>
+        </div>
+        <div class="divider"></div>
+        <div class="bar-row">
+          <div class="bar-name">Oct–Dec spend</div>
+          <div class="bar-track"><div class="bar-fill" style="width:79%;"></div></div>
+          <div class="bar-val">$28.7K</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-name">Jan–Mar spend</div>
+          <div class="bar-track"><div class="bar-fill amber" style="width:100%;"></div></div>
+          <div class="bar-val amber">$36.3K</div>
+        </div>
+        <div class="chart-note">Spend increased 26% while revenue fell 12%. This is the classic saturation signal — the existing audience has been worked to the point where additional impressions produce diminishing returns.</div>
+      </div>
+    </div>
+
+    <details class="expand">
+      <summary>What prospecting actually looks like in this account</summary>
+      <div class="expand-body">
+        <p class="body">The account does have some prospecting activity — the Advantage+ Shopping campaigns can reach cold audiences alongside warm ones, and there are a handful of "NewCustomers" labelled campaigns. But dedicated cold-audience prospecting (campaigns explicitly targeting people who have never interacted with Makobi) is a small fraction of total budget.</p>
+        <div class="divider"></div>
+        <table>
+          <thead><tr><th>Targeting type</th><th>90-day spend</th><th>ROAS</th><th>Note</th></tr></thead>
+          <tbody>
+            <tr><td>Broad (incl. Advantage+)</td><td>$30,672</td><td>20.26×</td><td>Mixed new + existing audiences — Meta controls the split</td></tr>
+            <tr><td>Custom Audience (Retargeting)</td><td>$5,014</td><td>30.59×</td><td>Explicit retargeting — existing customers and visitors</td></tr>
+            <tr><td>Interest Stack</td><td>$1,773</td><td>7.71×</td><td>Closest to pure cold prospecting — lowest ROAS but reaching new people</td></tr>
+            <tr><td>Interest + Lookalike</td><td>$577</td><td>8.58×</td><td>Cold prospecting</td></tr>
+          </tbody>
+        </table>
+        <div class="callout">The Interest/Lookalike campaigns — the ones explicitly targeting cold audiences — show 7–8× ROAS. That's lower than retargeting, but it's healthy for new-customer acquisition at Makobi's margin and AOV. The problem is they represent a tiny fraction of total spend. Growing from $200K to $500K/month requires this number to scale.</div>
+      </div>
+    </details>
+
+    <details class="expand">
+      <summary>Creative: what 76 ads and 3 statistical models actually show</summary>
+      <div class="expand-body">
+        <p class="body">A full analysis of 76 creatives across Forward Stepwise, Lasso, and Random Forest models reveals specific, actionable patterns — not opinions about what looks good.</p>
+        <div class="divider"></div>
+
+        <p class="body" style="font-weight:600; color:var(--red); margin-bottom:6px;">The single strongest signal: persona-less ads fail.</p>
+        <p class="body">Ads classified as targeting "general shoppers" (no specific audience identity) return <strong>5.0× ROAS</strong> vs the account median of <strong>19.8×</strong>. This is the highest-confidence finding across all three models — Stepwise, Lasso, and Random Forest agree. Meta's own delivery algorithm also penalises these ads with lower spend allocation. The account is producing persona-less creative at scale and the algorithm is confirming what the conversion data shows.</p>
+        <div class="divider"></div>
+
+        <p class="body" style="font-weight:600; color:var(--text); margin-bottom:8px;">Visual style: production spend is misallocated</p>
+        <table>
+          <thead><tr><th>Visual style</th><th>n</th><th>Avg ROAS</th><th>Relative spend</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Polished brand</strong></td><td>8</td><td style="font-weight:700; color:var(--green);">29.2×</td><td>Normal</td><td><span class="tag green">Produce more</span></td></tr>
+            <tr><td>Lifestyle</td><td>15</td><td style="color:var(--green);">25.0×</td><td style="color:var(--amber);">Under-delivered by Meta</td><td><span class="tag green">Produce more</span></td></tr>
+            <tr><td>Graphic design</td><td>16</td><td>24.5×</td><td>Normal</td><td><span class="tag green">Scale</span></td></tr>
+            <tr><td>Flat lay</td><td>5</td><td>18.6×</td><td>Normal</td><td><span class="tag gray">Maintain</span></td></tr>
+            <tr><td><strong>Product-only photography</strong></td><td>23</td><td style="font-weight:700; color:var(--red);">17.8×</td><td style="color:var(--red);">Most spend</td><td><span class="tag red">Reduce</span></td></tr>
+          </tbody>
+        </table>
+        <p class="body" style="margin-top:8px; color:var(--text-3);">Product-only photography is the most-produced style and the worst performer. Polished brand returns 29.2× — 64% better — but is only 8 ads. The production budget is pointed at the wrong format.</p>
+        <div class="divider"></div>
+
+        <p class="body" style="font-weight:600; color:var(--text); margin-bottom:8px;">Creative angle: 66% of the library is the weakest angle</p>
+        <table>
+          <thead><tr><th>Creative angle</th><th>Library share</th><th>Avg ROAS</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Promotional Urgency</strong></td><td>22%</td><td style="font-weight:700; color:var(--green);">27.4×</td><td><span class="tag green">Under-produced</span></td></tr>
+            <tr><td>Lifestyle / Identity</td><td>12%</td><td style="color:var(--green);">20.7×</td><td><span class="tag green">Under-produced</span></td></tr>
+            <tr><td>Product Showcase</td><td style="color:var(--red); font-weight:700;">66%</td><td>20.4×</td><td><span class="tag red">Over-produced</span></td></tr>
+          </tbody>
+        </table>
+        <div class="callout" style="margin-top:10px;">The account is in a feedback loop: Product_Showcase dominates the library by volume → Meta amplifies it with more delivery → more Product_Showcase gets produced. The algorithm is optimising on the wrong creative because it has no volume in the right creative to learn from. This is fixable — it requires deliberate production of Promotional Urgency and polished brand content to break the loop.</div>
+        <div class="divider"></div>
+
+        <p class="body" style="font-weight:600; color:var(--text); margin-bottom:8px;">What to do immediately</p>
+        <table>
+          <thead><tr><th>Creative pattern</th><th>ROAS</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr><td>Bundle-framed creative</td><td style="color:var(--green);">50×</td><td><span class="tag green">Scale — only 2 ads exist</span></td></tr>
+            <tr><td>DPA carousels (top performers)</td><td style="color:var(--green);">55–72×</td><td><span class="tag green">Scale</span></td></tr>
+            <tr><td>Flat discount ads ("15OFF", "20% OFF")</td><td style="color:var(--red);">7–8×</td><td><span class="tag red">Pause</span></td></tr>
+            <tr><td>58 ads with zero conversions</td><td style="color:var(--red);">0×</td><td><span class="tag red">Pause immediately</span></td></tr>
+          </tbody>
+        </table>
+        <p class="body" style="margin-top:10px;">50 near-identical creative pairs are running simultaneously, risking Meta's Andromeda deduplication threshold — ads that are too similar compete against each other in the same auction rather than reaching different people.</p>
+      </div>
+    </details>
+
+    <div class="what-wed-do">
+      <div class="wwd-label">What we'd do</div>
+      <p><strong>Immediately:</strong> Pause 58 zero-conversion ads and flat discount creative. Redirect that budget. <strong>Month 2:</strong> Launch dedicated prospecting campaigns targeting cold audiences — minimum 30% of Meta spend toward net-new customer acquisition. <strong>Alongside:</strong> Track and report new-customer ROAS separately from blended ROAS so the prospecting investment can be evaluated on its own terms.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ -->
+<!-- CH04 — QUICK WINS          -->
+<!-- ═══════════════════════════ -->
+<section id="ch04">
+  <div class="section-inner">
+    <div class="ch-num"><span>04</span> — The Quick Wins</div>
+    <h2>While we fix the structural problem, there's $40–65K/month recoverable from traffic already arriving — with no new ad spend.</h2>
+    <p class="implication">Three revenue leaks exist independently of the audience and prospecting problem. They're worth fixing on their own terms — and they'll compound the value of any new customers the prospecting system eventually brings in.</p>
+
+    <div class="stats-row">
+      <div class="stat-card red">
+        <div class="stat-num">30.77%</div>
+        <div class="stat-label">ATC → Checkout rate</div>
+        <div class="stat-bench">Benchmark: 40–60%</div>
+      </div>
+      <div class="stat-card red">
+        <div class="stat-num">0</div>
+        <div class="stat-label">cart recovery emails sent</div>
+        <div class="stat-bench">Flow in Draft since 2021</div>
+      </div>
+      <div class="stat-card red">
+        <div class="stat-num">0.3%</div>
+        <div class="stat-label">email capture rate</div>
+        <div class="stat-bench">3,813 sessions → ~15 subs/wk</div>
+      </div>
+      <div class="chart-area" style="flex:2; min-width:260px;">
+        <div class="chart-label">Weekly purchase funnel</div>
+        <div class="bar-row">
+          <div class="bar-name">Add to Cart</div>
+          <div class="bar-track"><div class="bar-fill" style="width:100%;"></div></div>
+          <div class="bar-val">4,238</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-name">Reached Checkout</div>
+          <div class="bar-track"><div class="bar-fill red" style="width:31%;"></div></div>
+          <div class="bar-val red">1,304</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-name">Purchased</div>
+          <div class="bar-track"><div class="bar-fill green" style="width:20%;"></div></div>
+          <div class="bar-val green">834</div>
+        </div>
+        <div class="chart-note">Checkout → Purchase (63.9%) is at benchmark — buyers who reach checkout convert fine. The drop is happening before checkout. Mobile UX fixes realistically recover 5–8 percentage points of checkout rate, worth an estimated <strong>+$25–40K/month</strong>. Combined with activating the abandoned cart flow (~$15–25K/month), total near-term recovery from existing traffic: <strong>$40–65K/month</strong>. The full theoretical upside if checkout rate reaches industry benchmark (55%) is ~$128K/month — but that requires structural offer changes beyond UX fixes alone.</div>
+      </div>
+    </div>
+
+    <details class="expand">
+      <summary>Why 69% of carts never reach checkout — three fixable causes</summary>
+      <div class="expand-body">
+        <p class="body">This is a mobile UX problem, not a pricing or product problem. The evidence: Checkout→Purchase (63.9%) is healthy. Buyers who reach checkout are converting. They're not reaching checkout.</p>
+        <div class="divider"></div>
+        <div class="friction-list">
+          <div class="friction-item">
+            <div class="friction-badge">Fix 1</div>
+            <p><strong>Price and ATC button are below the fold on mobile.</strong> A buyer on a typical phone has to scroll 600px+ before they can see the price or tap to purchase. The single most important conversion element is invisible on first load.</p>
+          </div>
+          <div class="friction-item">
+            <div class="friction-badge">Fix 2</div>
+            <p><strong>Full-width red "CLICK HERE IF YOUR SIZE IS UNAVAILABLE" banner on the Biker Jeans product page.</strong> Appears before the customer selects a size — signals inventory anxiety at the moment of decision. The fix: replace with per-size availability signals below the size grid (e.g. "Only 2 left in XL").</p>
+          </div>
+          <div class="friction-item">
+            <div class="friction-badge">Fix 3</div>
+            <p><strong>Shipping cost ($16–18) revealed for the first time at checkout.</strong> The total order cost appears only after the customer proceeds to checkout — a price-shock moment at the highest-abandonment step in the funnel.</p>
+          </div>
+        </div>
+        <div class="callout">All three are Shopify theme changes — no dev sprint, no platform work, no ad spend required.</div>
+      </div>
+    </details>
+
+    <details class="expand">
+      <summary>The abandoned cart flow that's been off since 2021</summary>
+      <div class="expand-body">
+        <p class="body">Makobi has an Abandoned Cart email flow in Klaviyo. It was set up at some point before 2021 and has been in Draft status ever since. Every person who has added to cart and not purchased over the past 5+ years has received zero follow-up.</p>
+        <div class="divider"></div>
+        <table>
+          <thead><tr><th>Klaviyo flow</th><th>Status</th><th>Revenue/recipient</th></tr></thead>
+          <tbody>
+            <tr><td>Order Confirmation</td><td><span class="tag green">Active</span></td><td>$5.78</td></tr>
+            <tr><td>Abandoned Cart</td><td><span class="tag red">Draft — never sent</span></td><td>—</td></tr>
+            <tr><td>Welcome Series</td><td><span class="tag red">0 recipients</span></td><td>—</td></tr>
+            <tr><td>Browse Abandonment</td><td><span class="tag red">0 recipients</span></td><td>—</td></tr>
+            <tr><td>Win-Back</td><td><span class="tag gray">Does not exist</span></td><td>—</td></tr>
+            <tr><td>Post-Purchase</td><td><span class="tag gray">Does not exist</span></td><td>—</td></tr>
+          </tbody>
+        </table>
+        <div class="callout"><strong>Estimate:</strong> At Order Confirmation's $5.78/recipient benchmark, a 3-email abandoned cart sequence recovering 15% of abandoners is worth an estimated $15–25K/month. The flow exists — it just needs to be activated.</div>
+      </div>
+    </details>
+
+    <details class="expand">
+      <summary>Email capture is 99.6% broken</summary>
+      <div class="expand-body">
+        <p class="body">Meta is delivering ~3,813 sessions/week to the site. Those sessions are generating approximately 15 new Klaviyo subscribers per week — a 0.3–0.5% capture rate. Benchmark is 5–15%.</p>
+        <div class="divider"></div>
+        <table>
+          <thead><tr><th>Metric</th><th>Current</th><th>Benchmark</th></tr></thead>
+          <tbody>
+            <tr><td>Weekly sessions from Meta</td><td>~3,813</td><td>—</td></tr>
+            <tr><td>New Klaviyo subs/week</td><td>~15</td><td>190–570</td></tr>
+            <tr><td>Email capture rate</td><td>0.3–0.5%</td><td>5–15%</td></tr>
+          </tbody>
+        </table>
+        <p class="body" style="margin-top:12px;">The account sends 300,000+ emails per month to a large legacy list — so the email infrastructure works. The mechanism feeding new subscribers from current paid traffic is broken. Almost certainly a pop-up trigger or Klaviyo integration configuration issue.</p>
+        <div class="callout" style="margin-top:10px;"><strong>Note on attribution:</strong> Two email platforms (Klaviyo and Omnisend) are currently active simultaneously and both claim last-click credit. Combined, they report ~$540K in email-attributed revenue over 15 months on a ~$244K/month business — mathematically impossible. Consolidating to a single ESP is a prerequisite for trusting any email revenue reporting.</div>
+      </div>
+    </details>
+
+    <details class="expand">
+      <summary>More friction across the site — expanded page audit</summary>
+      <div class="expand-body">
+        <p class="body">Beyond the three PDP friction points, a heuristic audit covering five page types identified additional friction — all fixable without development work.</p>
+        <div class="divider"></div>
+        <div class="friction-list">
+          <div class="friction-item">
+            <div class="friction-badge">Cart</div>
+            <p><strong>Users visit the cart 5.03× per session on average — but don't commit.</strong> The cart has no urgency signals, no low-stock indicators, no cross-sell, and no trust badges near the checkout button. With 1,400 SKUs and a loyal returning customer base, a basic "Complete the Look" or Frequently Bought Together module is a direct AOV lift with zero acquisition cost.</p>
+          </div>
+          <div class="friction-item">
+            <div class="friction-badge">Homepage</div>
+            <p><strong>No brand value proposition above the fold.</strong> Cold traffic lands on a product grid with no headline, no brand statement, and zero answer to "why Makobi?" Fresh Clean Threads shows 65K+ reviews above the fold. Makobi's homepage answers no questions about why a first-time visitor should stay.</p>
+          </div>
+          <div class="friction-item">
+            <div class="friction-badge">Reviews</div>
+            <p><strong>0–1 reviews across audited PDPs.</strong> The Biker Jeans PDP has 1 review. The Angelo Tee — a core $70–80 jersey tee — has 0 reviews. Fashion purchases at this price point require social proof for cold traffic. Competitors show 40,000+ review counts above the fold. A post-purchase email review request campaign is a one-week fix.</p>
+          </div>
+          <div class="friction-item">
+            <div class="friction-badge">Collections</div>
+            <p><strong>The main /collections/all page sorts A-to-Z by default</strong> — showing children's jackets ("B1026 Kids Bergamo") first because B-codes sort before M-codes (men's). US adult basics shoppers see kids' apparel as their first impression of the Makobi catalog. A single default sort setting change in Shopify admin fixes this in under 60 seconds.</p>
+          </div>
+          <div class="friction-item">
+            <div class="friction-badge">New Arrivals</div>
+            <p><strong>The /collections/new-arrival page has no hero or editorial framing.</strong> Meta ad traffic landing here hits a filter bar and a 2-column grid with no welcome moment, no brand context, no hook. Cold traffic from a "New Arrivals" ad receives zero reason to browse. A styled hero image with one headline would capture the investment already being made to get visitors there.</p>
+          </div>
+          <div class="friction-item">
+            <div class="friction-badge">Product Names</div>
+            <p><strong>Internal SKU codes are exposed in product names across the catalog.</strong> "Jersey Shirt | M393 Angelo Tee - Black" appears on collection grids and in browser tabs. Shoppers scanning at 1 second per card read "M393" as noise, not a brand name. Renaming storefront titles to customer-facing format is a one-time admin task.</p>
+          </div>
+        </div>
+        <div class="callout blue">None of the above require development, design sprints, or ad spend. They are Shopify admin changes, email automations, and theme settings — the kind of fixes that typically take 2–3 hours each to implement.</div>
+      </div>
+    </details>
+
+    <div class="what-wed-do">
+      <div class="wwd-label">What we'd do</div>
+      <p><strong>Week 1:</strong> Activate the abandoned cart flow. <strong>Week 2:</strong> Three mobile PDP fixes — price above fold, remove inventory banner on Biker Jeans, surface shipping cost. <strong>Also Week 1:</strong> Fix collections/all default sort; rename product titles. <strong>Month 1:</strong> Fix email capture, consolidate to Klaviyo only, launch review request campaign. These actions together target an estimated <strong>$40–65K/month in near-term recoverable revenue from existing traffic</strong> — no new customers required. (Mobile PDP fixes: ~$25–40K/month. Abandoned cart flow: ~$15–25K/month.)</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ -->
+<!-- CH05 — OPPORTUNITY         -->
+<!-- ═══════════════════════════ -->
+<section id="ch05">
+  <div class="section-inner">
+    <div class="ch-num"><span>05</span> — The Market Opportunity</div>
+    <h2>Every major DTC basics competitor is losing ground on quality. That territory is open.</h2>
+    <p class="implication">True Classic, Fresh Clean Threads, and BYLT all have documented quality-decline narratives on Reddit — the primary trust platform for this category. Searches for "non-shrink t-shirt" and "heavyweight basics" are rising fast. The only brand gaining share is the one leading with quality permanence and provenance. Makobi has the assets to own that territory. None of them are in use yet.</p>
+
+    <div class="stats-row">
+      <div class="stat-card red">
+        <div class="stat-num">0.03%</div>
+        <div class="stat-label">Makobi Share of Search</div>
+        <div class="stat-bench">~274 avg monthly searches</div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-num">+15.7pp</div>
+        <div class="stat-label">Buck Mason SoS YoY</div>
+        <div class="stat-bench">Only growing competitor</div>
+      </div>
+      <div class="stat-card amber">
+        <div class="stat-num">+75.6%</div>
+        <div class="stat-label">quality problem vocab YoY</div>
+        <div class="stat-bench">"non-shrink", "heavyweight tee"</div>
+      </div>
+      <div class="chart-area" style="flex:2; min-width:260px;">
+        <div class="chart-label">Share of Search — category trend</div>
+        <div class="bar-row">
+          <div class="bar-name">True Classic</div>
+          <div class="bar-track"><div class="bar-fill red" style="width:72%;"></div></div>
+          <div class="bar-val red">↓ losing</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-name">Fresh Clean Threads</div>
+          <div class="bar-track"><div class="bar-fill red" style="width:48%;"></div></div>
+          <div class="bar-val red">↓ losing</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-name">BYLT Basics</div>
+          <div class="bar-track"><div class="bar-fill amber" style="width:35%;"></div></div>
+          <div class="bar-val amber">→ flat</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-name">Buck Mason</div>
+          <div class="bar-track"><div class="bar-fill green" style="width:28%;"></div></div>
+          <div class="bar-val green">↑ +15.7pp</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-name">Makobi</div>
+          <div class="bar-track"><div class="bar-fill gray" style="width:1%;"></div></div>
+          <div class="bar-val" style="color:var(--text-4);">0.03%</div>
+        </div>
+      </div>
+    </div>
+
+    <details class="expand">
+      <summary>What Buck Mason is doing — and what it leaves open</summary>
+      <div class="expand-body">
+        <p class="body">Buck Mason is the only DTC basics brand with growing Share of Search. Its positioning is built on three pillars: Made in USA production, heavyweight material specs, and quality permanence ("shirts that last years, not months"). That positioning is working — it has taken 15.7 percentage points of search share in a year where the category as a whole declined 3.9%.</p>
+        <div class="divider"></div>
+        <p class="body">The gap Buck Mason leaves: it serves standard and athletic body types. Its price point ($65+/tee) positions it as aspirational. No brand has claimed quality permanence for real-body-type men — Big & Tall, plus, dad-bod — at a mid-tier price point. That's the intersection Makobi can own.</p>
+        <div class="divider"></div>
+        <table>
+          <thead><tr><th>Brand</th><th>Quality narrative</th><th>Body-type coverage</th><th>SoS trend</th></tr></thead>
+          <tbody>
+            <tr><td>True Classic</td><td class="trend-dn">Active decline on Reddit</td><td>Standard/athletic</td><td class="trend-dn">↓ Declining</td></tr>
+            <tr><td>Fresh Clean Threads</td><td class="trend-dn">"They used to be good"</td><td>Standard only</td><td class="trend-dn">↓ Declining</td></tr>
+            <tr><td>BYLT</td><td>Mixed / inconsistent</td><td>Athletic</td><td class="trend-fl">→ Flat</td></tr>
+            <tr><td>Buck Mason</td><td class="trend-up">Positive — provenance cited</td><td>Standard/athletic</td><td class="trend-up">↑ +15.7pp</td></tr>
+            <tr><td><strong>Makobi — opportunity</strong></td><td>Clean slate — no Reddit presence yet</td><td><strong>B&T is top SEO page: 7,617 sessions</strong></td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+
+    <details class="expand">
+      <summary>The two assets Makobi has that no digital-native competitor can match</summary>
+      <div class="expand-body">
+        <p class="body">The positioning opportunity only works if it's credible. Two assets make it credible — and neither is being used in any current advertising.</p>
+        <div class="divider"></div>
+        <div class="friction-list">
+          <div class="friction-item">
+            <div class="friction-badge" style="background:var(--green-bg); color:var(--green);">Asset 1</div>
+            <p><strong>In-house production.</strong> Makobi manufactures domestically with direct quality control. This is the claim Buck Mason built its brand on — and Makobi can make it too. No True Classic, FCT, or BYLT equivalent exists. This asset has never appeared in an ad.</p>
+          </div>
+          <div class="friction-item">
+            <div class="friction-badge" style="background:var(--green-bg); color:var(--green);">Asset 2</div>
+            <p><strong>Big &amp; Tall organic foothold.</strong> The Big &amp; Tall landing page already generates 7,617 organic sessions — the top non-branded SEO page in the account. Buyers are finding Makobi through this search intent without a single ad dedicated to it. The demand is there. The identity above the fold isn't.</p>
+          </div>
+        </div>
+        <div class="callout blue"><strong>One important gate:</strong> The quality permanence story only works if the product is genuinely defensible. If quality is parity with True Classic, the positioning creates a Reddit liability rather than an asset. Product validation — wash tests, GSM specs, wear-cycle evidence — must precede the positioning claim at scale.</div>
+      </div>
+    </details>
+
+    <div class="what-wed-do">
+      <div class="wwd-label">What we'd do</div>
+      <p>Build a prospecting creative system around two angles: <strong>"Built for your frame"</strong> (Big &amp; Tall identity, explicitly for non-standard bodies) and <strong>"The last basics you replace"</strong> (quality permanence, backed by production story and wash-test evidence). Deploy as cold-audience prospecting to refill the retargeting pool with net-new buyers. This is the content the prospecting campaigns need to work.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ -->
+<!-- CH06 — THE PLAN            -->
+<!-- ═══════════════════════════ -->
+<section id="ch06">
+  <div class="section-inner">
+    <div class="ch-num"><span>06</span> — The Plan</div>
+    <h2>Fix what's leaking. Build for new customers. Own the positioning that makes them stay.</h2>
+    <p class="implication">The sequence matters. Fix the conversion and retention leaks first — that's revenue from traffic already arriving. Then build the prospecting and measurement infrastructure that acquires net-new customers. Then scale the creative system that earns brand preference and makes customers defensible long-term.</p>
+
+    <div class="roadmap">
+      <div class="roadmap-col">
+        <div class="roadmap-header" style="border-top: 3px solid var(--red);">
+          <div class="roadmap-month">Month 1 · April–May</div>
+          <div class="roadmap-theme">Fix the leaks</div>
+        </div>
+        <div class="roadmap-items">
+          <div class="roadmap-item">
+            <div class="roadmap-dot red"></div>
+            <div>
+              <div class="roadmap-item-text">Activate abandoned cart flow (3-email sequence)</div>
+              <div class="roadmap-item-val red">Est. +$15–25K/mo</div>
+            </div>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-dot red"></div>
+            <div>
+              <div class="roadmap-item-text">3 mobile PDP fixes — price above fold, remove inventory banner, surface shipping</div>
+              <div class="roadmap-item-val red">Est. +$25–40K/mo (CRO) + $15–25K/mo (abandoned cart)</div>
+            </div>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-dot red"></div>
+            <div>
+              <div class="roadmap-item-text">Fix email capture (15 → 150+ subs/week target)</div>
+            </div>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-dot red"></div>
+            <div>
+              <div class="roadmap-item-text">Consolidate to Klaviyo only — deactivate Omnisend</div>
+              <div class="roadmap-item-val">Clean attribution</div>
+            </div>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-dot red"></div>
+            <div>
+              <div class="roadmap-item-text">Pause 58 zero-conversion ads + flat discount creative</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="roadmap-col">
+        <div class="roadmap-header" style="border-top: 3px solid var(--amber);">
+          <div class="roadmap-month">Month 2 · May–June</div>
+          <div class="roadmap-theme">Acquire new customers</div>
+        </div>
+        <div class="roadmap-items">
+          <div class="roadmap-item">
+            <div class="roadmap-dot amber"></div>
+            <div>
+              <div class="roadmap-item-text">Launch prospecting campaigns — cold audiences, min 30% of Meta spend</div>
+              <div class="roadmap-item-val amber">Tracked on new-customer ROAS</div>
+            </div>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-dot amber"></div>
+            <div>
+              <div class="roadmap-item-text">Dual-metric ROAS framework — blended vs. new-customer reported separately</div>
+            </div>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-dot amber"></div>
+            <div>
+              <div class="roadmap-item-text">Google Search — branded campaigns first, then non-branded problem vocab</div>
+            </div>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-dot amber"></div>
+            <div>
+              <div class="roadmap-item-text">Win-Back email flow for 90-day lapsed customers</div>
+              <div class="roadmap-item-val">Repeat rate: 18.7% → 22%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="roadmap-col">
+        <div class="roadmap-header" style="border-top: 3px solid var(--green);">
+          <div class="roadmap-month">Month 3 · June–July</div>
+          <div class="roadmap-theme">Build brand preference</div>
+        </div>
+        <div class="roadmap-items">
+          <div class="roadmap-item">
+            <div class="roadmap-dot green"></div>
+            <div>
+              <div class="roadmap-item-text">"Built for your frame" creative system — Big &amp; Tall identity above the fold</div>
+              <div class="roadmap-item-val green">New positioning in market</div>
+            </div>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-dot green"></div>
+            <div>
+              <div class="roadmap-item-text">In-house production story creative (wash-test evidence, GSM specs)</div>
+            </div>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-dot green"></div>
+            <div>
+              <div class="roadmap-item-text">Post-purchase nurture sequence — product care, adjacent SKUs, repeat purchase path</div>
+            </div>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-dot green"></div>
+            <div>
+              <div class="roadmap-item-text">Big &amp; Tall landing page rebuilt with identity above fold (ad-to-LP congruency)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="roadmap-target">
+      <div>
+        <div class="roadmap-target-label">Current plateau</div>
+        <div class="roadmap-target-val">$200–300K/mo</div>
+      </div>
+      <div style="font-size:28px; color:#4b5563;">→</div>
+      <div>
+        <div class="roadmap-target-label">Target</div>
+        <div class="roadmap-target-val accent">$500–600K/mo</div>
+      </div>
+      <div style="font-size:13px; color:#9ca3af; max-width:240px; line-height:1.6;">
+        Leaks fixed → new customers acquired → brand preferred. Each phase compounds the one before it.
+      </div>
+    </div>
+
+    <details class="expand">
+      <summary>What's deliberately not in this plan</summary>
+      <div class="expand-body">
+        <table>
+          <thead><tr><th>Item</th><th>Why it's not Month 1–3</th></tr></thead>
+          <tbody>
+            <tr><td>Referral / advocacy program</td><td>60-day repeat rate is 18.7% — below the 25% threshold where referral programs add real compounding. Retention infrastructure first. Referral is Q3 at earliest.</td></tr>
+            <tr><td>TikTok Ads</td><td>Meta prospecting isn't built yet. Splitting budget before one channel is working amplifies inefficiency, not reach.</td></tr>
+            <tr><td>Google PMax</td><td>Branded Search establishes a conversion baseline first. PMax without purchase data is budget without direction.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+
+    <div class="what-wed-do">
+      <div class="wwd-label">The one-line version</div>
+      <p>The business has proven demand and a clear gap in the market. The work is building the systems that capture that demand better, reach new customers deliberately, and earn the kind of brand preference that doesn't require retargeting the same person 27 times.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Makobi USA · Growth Audit · April 2026</p>
+  <p>Data sourced from Shopify exports, Meta Ads Manager, Klaviyo, GA4, and independent market research.</p>
+</footer>
+
+<script>
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav a[href^="#"]');
+  const NAV_H = 64;
+
+  function updateNav() {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - NAV_H - 20) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  }
+
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) window.scrollTo({ top: target.offsetTop - NAV_H + 1, behavior: 'smooth' });
+    });
+  });
+</script>
+</body>
+</html>
