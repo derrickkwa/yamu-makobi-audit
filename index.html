@@ -708,6 +708,23 @@
       </div>
     </details>
 
+    <details class="expand">
+      <summary>Why pausing spend makes ROAS look better — and why that's the trap</summary>
+      <div class="expand-body">
+        <p class="body">A Marketing Mix Model (MMM) built on 15 months of Shopify and Meta data reveals something important: a large portion of weekly revenue is organic and baseline-driven. This was confirmed empirically during April–October 2024, when ad spend was significantly lower and the business still produced approximately $200K/month in revenue. That demand exists independently of paid media.</p>
+        <div class="divider"></div>
+        <p class="body" style="font-weight:600; color:var(--text);">Meta adstock decays in 1–2 weeks.</p>
+        <p class="body">The contribution of Meta ads to revenue fades within two weeks of any pause. When spend is paused, the organic baseline continues — and with no ad spend to separate it from, the whole number looks like ROAS improving. This creates a behavioral trap.</p>
+        <div class="callout amber">
+          <strong>The trap in sequence:</strong><br>
+          Spend is paused → organic demand continues → ROAS appears to spike → this looks like confirmation that the ads weren't working → budget stays reduced → the prospecting pipeline that would create new demand never gets built → the retained base slowly ages out → revenue eventually follows.
+        </div>
+        <div class="divider"></div>
+        <p class="body">The spike is the organic floor showing through. It is not evidence that paid media doesn't contribute — it is evidence that the contribution is short-cycle and disappears when the tap is turned off. The $200K/month organic baseline is the proof of concept that demand exists. Paid media's job is to grow the pool of people who enter that demand funnel, not to sustain what's already there.</p>
+        <div class="callout blue"><strong>Note on model completeness:</strong> The MMM cannot be fully specified until Google Ads data is accessible. $711K in Shopify last-click attributed to Google over 15 months — a channel equivalent in scale to Meta — is currently a black box. The channel contribution percentages in this model are directional; the structural findings (organic baseline, adstock decay) are reliable.</div>
+      </div>
+    </details>
+
     <div class="what-wed-do">
       <div class="wwd-label">What we'd do</div>
       <p>Keep retargeting — it converts well and the unit economics are sound. But <strong>cap its frequency and budget allocation</strong> to prevent further pool exhaustion. The growth question is what happens alongside it: a dedicated prospecting campaign, with cold-audience creative, tracked on new-customer ROAS separately. That's the part that doesn't exist yet.</p>
@@ -832,6 +849,32 @@
           </tbody>
         </table>
         <p class="body" style="margin-top:10px;">50 near-identical creative pairs are running simultaneously, risking Meta's Andromeda deduplication threshold — ads that are too similar compete against each other in the same auction rather than reaching different people.</p>
+        <div class="divider"></div>
+
+        <p class="body" style="font-weight:600; color:var(--text); margin-bottom:8px;">Two creative angles are completely absent from the account</p>
+        <p class="body">A creative diversity analysis across 8 angle categories found significant concentration — and two angles with zero representation:</p>
+        <table style="margin-top:10px;">
+          <thead><tr><th>Creative angle</th><th>Ads in account</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Lifestyle</td><td>55</td><td><span class="tag gray">Present</span></td></tr>
+            <tr><td>Price / Offer</td><td>51</td><td><span class="tag gray">Present</span></td></tr>
+            <tr><td>Product Demo</td><td>46</td><td><span class="tag gray">Present</span></td></tr>
+            <tr><td>Pain</td><td>17</td><td><span class="tag gray">Present</span></td></tr>
+            <tr><td>Social Proof</td><td style="font-weight:700; color:var(--amber);">1</td><td><span class="tag amber">Near-absent</span></td></tr>
+            <tr><td>Founder Story</td><td style="font-weight:700; color:var(--amber);">1</td><td><span class="tag amber">Near-absent</span></td></tr>
+            <tr><td><strong>Before / After</strong></td><td style="font-weight:700; color:var(--red);">0</td><td><span class="tag red">Absent</span></td></tr>
+            <tr><td><strong>Objection Handling</strong></td><td style="font-weight:700; color:var(--red);">0</td><td><span class="tag red">Absent</span></td></tr>
+          </tbody>
+        </table>
+        <div class="callout" style="margin-top:10px;">Before/After has zero ads — and it is the natural format for Makobi's quality permanence claim. "How does the shirt look after 52 washes?" answers the core buyer objection directly. Social Proof sits at 1 ad in a brand with a 66–68% returning customer base and 85.8% email opt-in rate — the testimonials exist but aren't being used.</div>
+        <div class="divider"></div>
+
+        <p class="body" style="font-weight:600; color:var(--text); margin-bottom:8px;">The spend structure: underscaled winners and overspent ads</p>
+        <p class="body">The creative health audit mapped every active ad on a spend vs. CPA scatter. The result: <strong>35+ ads with strong CPAs are receiving minimal budgets</strong>, while <strong>20+ ads are consuming significant spend at high CPAs</strong>. Kids Carousel creatives are a specifically confirmed underscaled category — CPAs of $6–10 on minimal spend. Budget reallocation toward proven performers is available before a single new ad is produced.</p>
+        <div class="divider"></div>
+
+        <p class="body" style="font-weight:600; color:var(--text); margin-bottom:8px;">Marginal ROAS: no revenue ceiling reached — but attribution is blind</p>
+        <p class="body">Marginal ROAS analysis across 16 campaigns found no campaigns have reached a strong revenue ceiling at current spend levels. There is channel headroom — with better creative, more new-customer focus, and a refreshed audience pool. However: <strong>9 of 16 campaigns have no UTM tracking.</strong> The 2.1× Meta/GA4 attribution gap cannot be diagnosed or closed without fixing this. Adding <code>{{campaign.name}}</code> as utm_campaign is a 15-minute admin task that unblocks the attribution picture.</p>
       </div>
     </details>
 
