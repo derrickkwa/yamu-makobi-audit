@@ -501,7 +501,7 @@
       <div class="stat-card">
         <div class="stat-num">$244K</div>
         <div class="stat-label">confirmed monthly revenue</div>
-        <div class="stat-bench">1,255 orders × $195 AOV</div>
+        <div class="stat-bench">1,255 orders × $210.59 AOV</div>
       </div>
       <div class="stat-card red">
         <div class="stat-num">12 mo</div>
@@ -512,6 +512,16 @@
         <div class="stat-num">26×</div>
         <div class="stat-label">blended Meta ROAS</div>
         <div class="stat-bench">Looks healthy. Read on.</div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-num">51.0%</div>
+        <div class="stat-label">12-month repeat rate</div>
+        <div class="stat-bench">DTC benchmark: 25–30%</div>
+      </div>
+      <div class="stat-card red">
+        <div class="stat-num">−33%</div>
+        <div class="stat-label">new customer YoY</div>
+        <div class="stat-bench">547/mo Q1 2026 vs 824/mo Q1 2025</div>
       </div>
       <div class="chart-area" style="flex:2; min-width:260px;">
         <div class="chart-label">The organic demand proof</div>
@@ -561,6 +571,24 @@
         </table>
         <div class="callout" style="margin-top:12px;">The 489 engagement-only purchases are not new conversions — they are existing customers who interacted with an ad after already completing a purchase. They count toward the default ROAS number. Only ~47% of reported purchases appear in the tighter 1-day click window. <strong>This is Meta's own data confirming that a significant portion of what's being claimed as paid conversions is organic demand being credited retroactively.</strong></div>
         <div class="callout blue" style="margin-top:8px;">The correct question isn't "what is our ROAS?" — it's "how many net-new customers did we acquire this month, and at what cost?" That number is not currently tracked or reported.</div>
+      </div>
+    </details>
+
+    <details class="expand">
+      <summary>New customer acquisition is down -33% YoY — the retained base is masking it</summary>
+      <div class="expand-body">
+        <p class="body">Shopify's own order data shows Q1 2026 averaged 547 new customers/month — down from 824/month in Q1 2025. That's a -33% year-over-year decline in new customer acquisition. Revenue is roughly flat (+2.9% YoY) because the retained customer base is compensating. The repeat rate (51.0% over 15 months) is genuinely strong — above the 25–30% DTC benchmark. But retention compounds only if new customers keep entering the funnel.</p>
+        <div class="divider"></div>
+        <table>
+          <thead><tr><th>Period</th><th>New customers/month (avg)</th><th>Revenue trend</th></tr></thead>
+          <tbody>
+            <tr><td>Q1 2025</td><td>824</td><td>Baseline</td></tr>
+            <tr><td>Q1 2026</td><td style="font-weight:700; color:var(--red);">547 (−33% YoY)</td><td>+2.9% YoY (retained base compensating)</td></tr>
+          </tbody>
+        </table>
+        <div class="divider"></div>
+        <p class="body">The channel-level attribution data reveals why. Google last-click accounts for 34.8% of revenue — but 62% of Google's attributed orders are <em>returning customers</em> navigating back via search (918 returning vs 552 new). Direct traffic is 69% returning customers. Both of these are loyal buyers using Google or a bookmark to find their way back — not new customer acquisition. Facebook/Meta, despite spending less, is actually the most new-customer-efficient paid channel: 51% of Meta last-click orders are from new customers. The acquisition funnel is weakening on the channels responsible for it.</p>
+        <div class="callout">The business is running on its retained base. That's not inherently bad — 51% repeat rate is strong. But without new customers entering the funnel, the retained base ages out and doesn't compound. Rebuilding new customer acquisition is the #1 structural priority.</div>
       </div>
     </details>
 
@@ -797,7 +825,7 @@
         <table>
           <thead><tr><th>Creative pattern</th><th>ROAS</th><th>Action</th></tr></thead>
           <tbody>
-            <tr><td>Bundle-framed creative</td><td style="color:var(--green);">50×</td><td><span class="tag green">Scale — only 2 ads exist</span></td></tr>
+            <tr><td>Bundle-framed creative</td><td style="color:var(--green);">50×</td><td><span class="tag green">Scale — only 2 ads exist. In practice: jacket + jeans outfit-completion framing (not t-shirt multi-packs — Shopify co-purchase data shows jacket+jeans as the dominant combination)</span></td></tr>
             <tr><td>DPA carousels (top performers)</td><td style="color:var(--green);">55–72×</td><td><span class="tag green">Scale</span></td></tr>
             <tr><td>Flat discount ads ("15OFF", "20% OFF")</td><td style="color:var(--red);">7–8×</td><td><span class="tag red">Pause</span></td></tr>
             <tr><td>58 ads with zero conversions</td><td style="color:var(--red);">0×</td><td><span class="tag red">Pause immediately</span></td></tr>
@@ -856,9 +884,45 @@
           <div class="bar-track"><div class="bar-fill green" style="width:20%;"></div></div>
           <div class="bar-val green">834</div>
         </div>
-        <div class="chart-note">Checkout → Purchase (63.9%) is at benchmark — buyers who reach checkout convert fine. The drop is happening before checkout. Mobile UX fixes realistically recover 5–8 percentage points of checkout rate, worth an estimated <strong>+$25–40K/month</strong>. Combined with activating the abandoned cart flow (~$15–25K/month), total near-term recovery from existing traffic: <strong>$40–65K/month</strong>. The full theoretical upside if checkout rate reaches industry benchmark (55%) is ~$128K/month — but that requires structural offer changes beyond UX fixes alone.</div>
+        <div class="chart-note">Checkout → Purchase (63.9%) is at benchmark — buyers who reach checkout convert fine. The drop is happening before checkout. Mobile UX fixes realistically recover 5–8 percentage points of checkout rate, worth an estimated <strong>+$25–40K/month (illustrative — pending tracking cleanup)</strong>. Combined with activating the abandoned cart flow (~$15–25K/month), total near-term recovery from existing traffic: <strong>$40–65K/month</strong>. The full theoretical upside if checkout rate reaches industry benchmark (55%) is ~$128K/month — but that requires structural offer changes beyond UX fixes alone.</div>
       </div>
     </div>
+
+    <details class="expand">
+      <summary>Data quality note — GA4 and Shopify report different checkout rates</summary>
+      <div class="expand-body">
+        <p class="body">Two tools are measuring the same funnel and showing different numbers. GA4 reports ATC→Checkout at 30.77%. Shopify's native funnel reports 46.4%. Both are directional only — here's why.</p>
+        <div class="divider"></div>
+        <table>
+          <thead><tr><th>Tool</th><th>ATC→Checkout rate</th><th>What it measures</th><th>Reliability</th></tr></thead>
+          <tbody>
+            <tr><td>GA4 (CRO Audit)</td><td style="font-weight:700;">30.77%</td><td>User interaction events (browser-side)</td><td>Bot-filtered by default; ATC/Checkout events validated in audit</td></tr>
+            <tr><td>Shopify Funnel</td><td style="font-weight:700;">46.4%</td><td>Server-side cart/checkout URL hits</td><td>Includes bot-triggered events; session denominator is 4.2x inflated</td></tr>
+          </tbody>
+        </table>
+        <div class="divider"></div>
+        <p class="body">The true ATC→Checkout rate is unknown — likely somewhere between 30.77% and 46.4%. The bot inflation in Shopify's session count (6.96M raw vs ~270K real sessions from GA4) is uniform across funnel steps, so dividing by 4.2x doesn't change the ratio. The discrepancy reflects a genuine measurement difference between how each tool tracks cart and checkout events.</p>
+        <div class="callout amber"><strong>What this means:</strong> The ATC friction is likely real — mobile UX evidence (session recordings, scroll depth, price-reveal timing) supports it regardless of the exact rate. But the $25–40K CRO recovery estimate is illustrative until bot traffic is cleaned from both sources and rates are re-measured. Priority 0: implement GA4 bot filter and remove language sitemaps before treating any funnel metric as definitive.</div>
+      </div>
+    </details>
+
+    <details class="expand">
+      <summary>Multi-item basket opportunity — 2.3× LTV for buyers who buy multiple items first</summary>
+      <div class="expand-body">
+        <p class="body">Shopify cohort data across 15 months shows that customers who bought multiple items on their first order generate 2.3× the mean LTV of single-item first-order buyers.</p>
+        <div class="divider"></div>
+        <table>
+          <thead><tr><th>First order type</th><th>Share of new customers</th><th>Mean LTV</th><th>Repeat rate</th></tr></thead>
+          <tbody>
+            <tr><td>Single item</td><td>47.6%</td><td>$254.06</td><td>30.7%</td></tr>
+            <tr><td>Multi-item</td><td>52.4%</td><td style="font-weight:700; color:var(--green);">$572.77 (2.3×)</td><td>41.8%</td></tr>
+          </tbody>
+        </table>
+        <div class="divider"></div>
+        <p class="body"><strong>Important caveat:</strong> this is a correlation, not a proven causal relationship. Higher-value customers may simply be more inclined to buy multiple items — not the other way around. Nudging single-item buyers toward multi-item does not automatically produce 2.3× LTV buyers.</p>
+        <div class="callout blue">The right move: A/B test a "complete the look" bundle prompt (jeans + matching jacket framing) on the PDP or cart page. The top co-purchase pattern in the data is jacket + matching jeans — and this is a category-level pattern, not a single hero pair. If the test shows that the prompt lifts subsequent LTV for nudged buyers vs control, scale it. If not, the 2.3× gap is selection bias and the lever is acquisition, not on-site nudging.</div>
+      </div>
+    </details>
 
     <details class="expand">
       <summary>Why 69% of carts never reach checkout — three fixable causes</summary>
@@ -958,7 +1022,7 @@
 
     <div class="what-wed-do">
       <div class="wwd-label">What we'd do</div>
-      <p><strong>Week 1:</strong> Activate the abandoned cart flow. <strong>Week 2:</strong> Three mobile PDP fixes — price above fold, remove inventory banner on Biker Jeans, surface shipping cost. <strong>Also Week 1:</strong> Fix collections/all default sort; rename product titles. <strong>Month 1:</strong> Fix email capture, consolidate to Klaviyo only, launch review request campaign. These actions together target an estimated <strong>$40–65K/month in near-term recoverable revenue from existing traffic</strong> — no new customers required. (Mobile PDP fixes: ~$25–40K/month. Abandoned cart flow: ~$15–25K/month.)</p>
+      <p><strong>Week 1:</strong> Activate the abandoned cart flow. <strong>Week 2:</strong> Three mobile PDP fixes — price above fold, remove inventory banner on Biker Jeans, surface shipping cost. <strong>Also Week 1:</strong> Fix collections/all default sort; rename product titles. <strong>Month 1:</strong> Fix email capture, consolidate to Klaviyo only, launch review request campaign. These actions together target an estimated <strong>$40–65K/month in near-term recoverable revenue from existing traffic</strong> — no new customers required. (Mobile PDP fixes: ~$25–40K/month illustrative; Abandoned cart flow: ~$15–25K/month.) Also Month 1: A/B test a jacket+jeans "complete the look" bundle prompt on jeans PDPs to validate whether nudging multi-item baskets at acquisition improves LTV — run for 4+ weeks before drawing conclusions.</p>
     </div>
   </div>
 </section>
@@ -1083,7 +1147,7 @@
         <p class="body" style="font-weight:600; color:var(--text);">What's missing.</p>
         <p class="body">No blog. No care guides. No comparison content. No editorial layer that says "here's why this shirt is different." The B&T page ranks on product alone — which means it's leaving significant long-tail intent uncaptured. A single piece of content like "Why most basics shrink (and what we do differently)" targets the exact frustration driving the +75.6% vocabulary growth and costs nothing to produce beyond time.</p>
         <div class="divider"></div>
-        <div class="callout blue"><strong>Google Search is the short-path version of the same bet.</strong> Before organic content builds traction (6–12 months), Google Search ads can capture this intent immediately — branded terms ("Makobi t-shirts," "Makobi big and tall") plus problem vocabulary ("big and tall basics," "t-shirt that doesn't shrink") reach buyers at the moment of active search. Unlike Meta, this traffic arrives with declared intent. It's a channel that has reportedly driven $711K in Shopify attribution over 15 months — without any optimization or direct access. The upside of actually managing it is meaningful.</div>
+        <div class="callout blue"><strong>Google Search is the short-path version of the same bet — but the picture is more complex than it looks.</strong> Shopify's traffic data shows Google as the #1 last-click revenue channel (34.8% of revenue, $308K in 90 days). But when you split that by customer type: 918 of those orders are from <em>returning customers</em> using Google to navigate back — only 552 are new customers. Google's high last-click revenue is largely loyal buyers Googling the brand name, not net-new acquisition. The critical unknown: the third-party agency managing Google Ads has no audit access granted. If they're running primarily branded search, Google Ads is functioning as a retention navigation tool, not acquisition. If they're running non-branded problem vocabulary ("big and tall basics," "t-shirt that doesn't shrink"), those 522 first-click new customer orders represent genuine top-of-funnel value. <strong>Getting access to the Google Ads account isn't just a nice-to-have — it's the only way to know whether the highest-revenue channel is acquiring customers or just capturing existing demand.</strong></div>
       </div>
     </details>
 
